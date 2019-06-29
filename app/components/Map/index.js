@@ -21,7 +21,12 @@ const Map = compose(
   withScriptjs,
   withGoogleMap,
 )(props => (
-  <GoogleMap defaultZoom={8} defaultCenter={{ lat: 45.4215, lng: -75.6972 }} onClick={props.onClick} />
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={{ lat: 45.4215, lng: -75.6972 }}
+    disableDefaultUI
+    onClick={props.onClick}
+  />
 ));
 
 export default Map;

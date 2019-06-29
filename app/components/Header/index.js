@@ -30,6 +30,12 @@ const LogoContainer = styled(Link)`
   justify-content: center;
   align-items: center;
   padding: 0 0 0 24px;
+  position: absolute;
+  font-size: 18px;
+`;
+
+const SearchBox = styled.div`
+  margin: auto;
 `;
 
 const GlobalHeader = props => (
@@ -37,7 +43,13 @@ const GlobalHeader = props => (
     <LogoContainer to="/">
       <Icon type="compass" /> Mapgram
     </LogoContainer>
-    <Search />
+    <SearchBox>
+      <Search
+        value={props.search}
+        onChange={props.onChange}
+        onSearch={props.onSearch}
+      />
+    </SearchBox>
   </FixedHeader>
 );
 

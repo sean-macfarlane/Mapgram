@@ -28,6 +28,14 @@ const theme = new (function theme() {
       },
     },
   };
+
+  this.Sidebar = {
+    background: '#fff',
+    borderRight: '1px solid rgba(0, 0, 0, .135)',
+    height: '100vh',
+    width: '400px',
+    collapsedWidth: '80px',
+  };
 })();
 
 export default theme;

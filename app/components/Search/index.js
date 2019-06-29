@@ -5,6 +5,7 @@ import { withScriptjs } from 'react-google-maps';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 
 import { GOOGLE_MAPS_URL } from 'constants/index';
+import { getCityFromGeocoder } from 'utils/geocode';
 
 const { Search } = Input;
 
@@ -25,7 +26,7 @@ const SearchBox = compose(
         },
         onPlacesChanged: () => {
           const places = refs.searchBox.getPlaces();
-
+          this.props.onSearch(getCityFromGeocoder(places));
           this.setState({
             places,
           });
@@ -40,19 +41,12 @@ const SearchBox = compose(
       ref={props.onSearchBoxMounted}
       bounds={props.bounds}
       onPlacesChanged={props.onPlacesChanged}
+      style={{
+          margin: 'auto'
+      }}
     >
-      <Search placeholder="Search..." style={{ width: 400 }} />
+      <Search value={props.value} onChange={props.onChange} placeholder="Search..." style={{ width: 400 }} />
     </StandaloneSearchBox>
-    <ol>
-      {props.places.map(
-        ({ place_id, formatted_address, geometry: { location } }) => (
-          <li key={place_id}>
-            {formatted_address}
-            {' at '}({location.lat()}, {location.lng()})
-          </li>
-        ),
-      )}
-    </ol>
   </div>
 ));
 
