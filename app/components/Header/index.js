@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Layout, Icon } from 'antd';
+import { Layout } from 'antd';
+import T from 'prop-types';
 
 import theme from 'styles';
 
@@ -40,19 +41,24 @@ const SearchBox = styled.div`
   margin: auto;
 `;
 
-const GlobalHeader = props => (
-  <FixedHeader>
-    <LogoContainer to="/">
-      <img src={logoImage} alt="logo" height="32" />
-    </LogoContainer>
-    <SearchBox>
-      <Search
-        value={props.search}
-        onChange={props.onChange}
-        onSearch={props.onSearch}
-      />
-    </SearchBox>
-  </FixedHeader>
-);
+const GlobalHeader = props => {
+  const { search, onChange, onSearch } = props;
+  return (
+    <FixedHeader>
+      <LogoContainer to="/">
+        <img src={logoImage} alt="logo" height="32" />
+      </LogoContainer>
+      <SearchBox>
+        <Search value={search} onChange={onChange} onSearch={onSearch} />
+      </SearchBox>
+    </FixedHeader>
+  );
+};
+
+GlobalHeader.propTypes = {
+  search: T.any,
+  onChange: T.func,
+  onSearch: T.func,
+};
 
 export default GlobalHeader;

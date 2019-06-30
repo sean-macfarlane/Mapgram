@@ -34,7 +34,7 @@ const SearchBox = compose(
       });
     },
   }),
-  withScriptjs,
+  withScriptjs
 )(props => (
   <div data-standalone-searchbox="">
     <StandaloneSearchBox
@@ -42,10 +42,15 @@ const SearchBox = compose(
       bounds={props.bounds}
       onPlacesChanged={props.onPlacesChanged}
       style={{
-          margin: 'auto'
+        margin: 'auto',
       }}
     >
-      <Search value={props.value} onChange={props.onChange} placeholder="Search..." style={{ width: 400 }} />
+      <Search
+        value={props.value}
+        onChange={props.onChange}
+        placeholder="Search..."
+        style={{ width: 400 }}
+      />
     </StandaloneSearchBox>
   </div>
 ));

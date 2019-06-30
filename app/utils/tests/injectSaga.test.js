@@ -9,7 +9,7 @@ import { render } from 'react-testing-library';
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import configureStore from '../../configureStore';
+import store from '../../store';
 import injectSaga, { useInjectSaga } from '../injectSaga';
 import * as sagaInjectors from '../sagaInjectors';
 
@@ -21,7 +21,6 @@ function* testSaga() {
 }
 
 describe('injectSaga decorator', () => {
-  let store;
   let injectors;
   let ComponentWithSaga;
 
@@ -30,7 +29,6 @@ describe('injectSaga decorator', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, memoryHistory);
     injectors = {
       injectSaga: jest.fn(),
       ejectSaga: jest.fn(),
@@ -94,7 +92,6 @@ describe('injectSaga decorator', () => {
 });
 
 describe('useInjectSaga hook', () => {
-  let store;
   let injectors;
   let ComponentWithSaga;
 
@@ -103,7 +100,6 @@ describe('useInjectSaga hook', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, memoryHistory);
     injectors = {
       injectSaga: jest.fn(),
       ejectSaga: jest.fn(),

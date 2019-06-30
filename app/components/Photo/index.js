@@ -18,7 +18,6 @@ class Photo extends PureComponent {
   };
 
   toggleLightbox = () => {
-    console.log('test');
     this.setState(state => ({
       lightboxIsOpen: !state.lightboxIsOpen,
     }));
@@ -26,16 +25,17 @@ class Photo extends PureComponent {
 
   render() {
     const { data } = this.props;
+    const { lightboxIsOpen } = this.state;
 
     return (
       <div>
         <Card
           onClick={this.toggleLightbox}
-          cover={<img src={data.get('urls').get('small')} />}
+          cover={<img src={data.get('urls').get('small')} alt="Unsplashed" />}
           hoverable
         />
         <ModalGateway>
-          {this.state.lightboxIsOpen ? (
+          {lightboxIsOpen ? (
             <Modal onClose={this.toggleLightbox} closeOnBackdropClick>
               <Carousel views={[{ src: data.get('urls').get('regular') }]} />
             </Modal>

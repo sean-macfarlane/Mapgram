@@ -6,7 +6,7 @@ import produce from 'immer';
 import { memoryHistory } from 'react-router-dom';
 import identity from 'lodash/identity';
 
-import configureStore from '../../configureStore';
+import store from '../../store';
 
 import getInjectors, { injectReducerFactory } from '../reducerInjectors';
 
@@ -25,13 +25,9 @@ const reducer = (state = initialState, action) =>
   });
 
 describe('reducer injectors', () => {
-  let store;
   let injectReducer;
 
   describe('getInjectors', () => {
-    beforeEach(() => {
-      store = configureStore({}, memoryHistory);
-    });
 
     it('should return injectors', () => {
       expect(getInjectors(store)).toEqual(
@@ -50,7 +46,6 @@ describe('reducer injectors', () => {
 
   describe('injectReducer helper', () => {
     beforeEach(() => {
-      store = configureStore({}, memoryHistory);
       injectReducer = injectReducerFactory(store, true);
     });
 

@@ -1,11 +1,6 @@
 import React from 'react';
 import { compose, withProps } from 'recompose';
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from 'react-google-maps';
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 
 import { GOOGLE_MAPS_URL } from 'constants/index';
 
@@ -14,12 +9,18 @@ const Map = compose(
     googleMapURL: GOOGLE_MAPS_URL,
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: (
-      <div style={{ height: `calc(100% - 64px)`, width: '100%', position: 'fixed' }} />
+      <div
+        style={{
+          height: `calc(100% - 64px)`,
+          width: '100%',
+          position: 'fixed',
+        }}
+      />
     ),
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
-  withGoogleMap,
+  withGoogleMap
 )(props => (
   <GoogleMap
     defaultZoom={8}

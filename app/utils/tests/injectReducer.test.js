@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { render } from 'react-testing-library';
 
-import configureStore from '../../configureStore';
+import store from '../../store';
 import injectReducer, { useInjectReducer } from '../injectReducer';
 import * as reducerInjectors from '../reducerInjectors';
 
@@ -18,7 +18,6 @@ const Component = () => null;
 const reducer = s => s;
 
 describe('injectReducer decorator', () => {
-  let store;
   let injectors;
   let ComponentWithReducer;
 
@@ -27,7 +26,6 @@ describe('injectReducer decorator', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, memoryHistory);
     injectors = {
       injectReducer: jest.fn(),
     };
@@ -69,7 +67,6 @@ describe('injectReducer decorator', () => {
 });
 
 describe('useInjectReducer hook', () => {
-  let store;
   let injectors;
   let ComponentWithReducer;
 
@@ -78,7 +75,6 @@ describe('useInjectReducer hook', () => {
       injectReducer: jest.fn(),
     };
     reducerInjectors.default = jest.fn().mockImplementation(() => injectors);
-    store = configureStore({}, memoryHistory);
     ComponentWithReducer = () => {
       useInjectReducer({ key: 'test', reducer });
       return null;

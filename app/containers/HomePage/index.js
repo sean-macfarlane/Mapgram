@@ -11,7 +11,6 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import T from 'prop-types';
 import IT from 'react-immutable-proptypes';
-import { fromJS, List, Map } from 'immutable';
 import { Layout } from 'antd';
 import styled from 'styled-components';
 
@@ -42,7 +41,6 @@ const Content = styled(AntdContent)`
 
 class HomePage extends React.PureComponent {
   static propTypes = {
-    globalLoading: T.bool,
     photos: T.oneOfType([IT.map, T.bool]),
     loadPhotos: T.func,
   };
@@ -60,8 +58,9 @@ class HomePage extends React.PureComponent {
   handleOnChange = e => this.setState({ search: e.target.value });
 
   handleOnSearch = value => {
+    const { loadPhotos } = this.props;
     if (value && value !== '') {
-      this.props.loadPhotos(value, 1);
+      loadPhotos(value, 1);
       this.setState({ search: value, collapsed: false, page: 1 });
     }
   };
@@ -71,8 +70,8 @@ class HomePage extends React.PureComponent {
     const that = this;
     geocoder.geocode(
       { location: { lat: e.latLng.lat(), lng: e.latLng.lng() } },
-      function(results, status) {
-        if (status == 'OK') {
+      (results, status) => {
+        if (status === 'OK') {
           const city = getCityFromGeocoder(results) || '';
           that.handleOnSearch(city);
           that.setState({
@@ -81,47 +80,50 @@ class HomePage extends React.PureComponent {
         } else {
           console.log(
             'Geocode was not successful for the following reason:',
-            status,
-          );
+            status
+          ); // eslint-disable-line no-console
         }
-      },
+      }
     );
   };
 
   handleInfiniteOnLoad = () => {
+    const { photos, loadPhotos } = this.props;
+    const { page, search } = this.state;
     if (
-      this.props.photos &&
-      !this.props.photos.get('loading') &&
-      this.props.photos.get('data') &&
-      this.props.photos.get('data').get('total_pages') !== this.state.page
+      photos &&
+      !photos.get('loading') &&
+      photos.get('data') &&
+      photos.get('data').get('total_pages') !== page
     ) {
-      this.props.loadPhotos(this.state.search, this.state.page + 1);
-      this.setState({ page: this.state.page + 1 });
+      loadPhotos(search, page + 1);
+      this.setState({ page: page + 1 });
     }
   };
 
   render() {
     const { photos } = this.props;
+    const { page, search, collapsed } = this.state;
 
     return (
       <ContainerLayout>
         <Header
-          search={this.state.search}
+          search={search}
           onChange={this.handleOnChange}
           onSearch={this.handleOnSearch}
         />
         <Content>
           <Sidebar
-            collapsed={this.state.collapsed}
+            collapsed={collapsed}
             photos={photos && photos.get('data')}
             loading={photos && photos.get('loading')}
-            page={this.state.page}
+            page={page}
             handleInfiniteOnLoad={this.handleInfiniteOnLoad}
             hasMore={
               photos &&
               photos.get('data') &&
               photos.get('data').get('total_pages') &&
-              photos.get('data').get('total_pages') !== this.state.page
+              photos.get('data').get('total_pages') !== page
             }
           />
           <GoogleMap onClick={this.handleOnClick} />
@@ -144,7 +146,7 @@ const mapDispatchToProps = dispatch => ({
 
 const withConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 );
 
 export default compose(withConnect)(HomePage);

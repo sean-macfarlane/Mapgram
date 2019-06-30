@@ -5,7 +5,7 @@
 import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
 
-import configureStore from '../../configureStore';
+import store from '../../store';
 import getInjectors, {
   injectSagaFactory,
   ejectSagaFactory,
@@ -18,14 +18,10 @@ function* testSaga() {
 
 describe('injectors', () => {
   const originalNodeEnv = process.env.NODE_ENV;
-  let store;
   let injectSaga;
   let ejectSaga;
 
   describe('getInjectors', () => {
-    beforeEach(() => {
-      store = configureStore({}, memoryHistory);
-    });
 
     it('should return injectors', () => {
       expect(getInjectors(store)).toEqual(
@@ -45,7 +41,6 @@ describe('injectors', () => {
 
   describe('ejectSaga helper', () => {
     beforeEach(() => {
-      store = configureStore({}, memoryHistory);
       injectSaga = injectSagaFactory(store, true);
       ejectSaga = ejectSagaFactory(store, true);
     });
@@ -120,7 +115,6 @@ describe('injectors', () => {
 
   describe('injectSaga helper', () => {
     beforeEach(() => {
-      store = configureStore({}, memoryHistory);
       injectSaga = injectSagaFactory(store, true);
       ejectSaga = ejectSagaFactory(store, true);
     });

@@ -42,5 +42,5 @@ const withSaga = injectSaga({ key: 'global', saga });
 
 export default compose(
   withReducer,
-  withSaga,
+  withSaga
 )(App);

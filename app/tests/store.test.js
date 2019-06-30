@@ -3,14 +3,9 @@
  */
 
 import { browserHistory } from 'react-router-dom';
-import configureStore from '../configureStore';
+import store from '../store';
 
 describe('configureStore', () => {
-  let store;
-
-  beforeAll(() => {
-    store = configureStore({}, browserHistory);
-  });
 
   describe('injectedReducers', () => {
     it('should contain an object for reducers', () => {
