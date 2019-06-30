@@ -1,5 +1,7 @@
 # Mapgram
+
 https://mapgram-app.herokuapp.com/
+
 React app to view photos of the world by using Unsplash API and Google Maps API.
 Click anywhere on the map or use the Autocomplete to view photos of that city. 
 
