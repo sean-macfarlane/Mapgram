@@ -5,16 +5,7 @@ import { Card } from 'antd';
 class Photo extends PureComponent {
   render() {
     const { data } = this.props;
-    console.log(data)
-    return (
-      <Card
-        cover={
-          <img
-            src={data.get('urls').get('small')}
-          />
-        }
-      />
-    );
+    return <Card cover={<img src={data.get('urls').get('small')} />} />;
   }
 }
 

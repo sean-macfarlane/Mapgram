@@ -11,17 +11,26 @@ export class PhotoList extends PureComponent {
 
     this.state = {
       list: props.photos || [],
+      page: props.page || 1,
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    let { list } = this.state;
+    const { list } = this.state;
 
-    if(nextProps.page > this.props.page){
-        
-    }
     if (nextProps.photos !== this.props.photos) {
-        list = nextProps.data.map(r => this.formatRecommendation(r));
+      if (nextProps.page > this.state.page) {
+        console.log('test');
+        this.setState({
+          page: nextProps.page,
+          list: this.state.list.concat(nextProps.photos),
+        });
+      } else {
+        console.log('test2');
+        this.setState({
+          list: nextProps.photos,
+        });
+      }
     }
   }
 
@@ -30,7 +39,7 @@ export class PhotoList extends PureComponent {
       <List
         itemLayout="horizontal"
         dataSource={this.state.list}
-        renderItem={item => <Photo data={item} />}
+        renderItem={item => <Photo key={item.get('id')} data={item} />}
       />
     );
   }

@@ -4,9 +4,10 @@ import {
   LOAD_PHOTOS_FAILURE,
 } from './constants';
 
-export const loadPhotosRequest = query => ({
+export const loadPhotosRequest = (query, page) => ({
   type: LOAD_PHOTOS_REQUEST,
   query,
+  page,
 });
 
 export const loadPhotosSuccess = result => ({

@@ -24,7 +24,6 @@ function appReducer(currentState = initialState, action) {
       return state.setIn(['photos', 'loading'], true);
 
     case LOAD_PHOTOS_SUCCESS:
-      console.log(action);
       return state
         .setIn(['photos', 'loading'], false)
         .updateIn(

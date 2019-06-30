@@ -15,7 +15,9 @@ export default function* watchGlobalActions() {
 
 export function* loadPhotosSaga(action) {
   try {
-    const url = `https://api.unsplash.com/search/photos/?query=${action.query}&client_id=${UNSPLASH_ACCESS_KEY}`;
+    const url = `https://api.unsplash.com/search/photos/?query=${
+      action.query
+    }&page=${action.page || 1}&client_id=${UNSPLASH_ACCESS_KEY}`;
 
     const response = yield call(request, url);
 

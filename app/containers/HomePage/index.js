@@ -61,7 +61,7 @@ class HomePage extends React.PureComponent {
 
   handleOnSearch = value => {
     if (value && value !== '') {
-      this.props.loadPhotos(value);
+      this.props.loadPhotos(value, 1);
       this.setState({ search: value, collapsed: false, page: 1 });
     }
   };
@@ -88,9 +88,21 @@ class HomePage extends React.PureComponent {
     );
   };
 
+  handleInfiniteOnLoad = () => {
+    if (
+      this.props.photos &&
+      !this.props.photos.get('loading') &&
+      this.props.photos.get('data') &&
+      this.props.photos.get('data').get('total_pages') !== this.state.page
+    ) {
+      this.props.loadPhotos(this.state.search, this.state.page + 1);
+      this.setState({ page: this.state.page + 1 });
+    }
+  };
+
   render() {
     const { photos } = this.props;
-    console.log(photos);
+
     return (
       <ContainerLayout>
         <Header
@@ -104,6 +116,13 @@ class HomePage extends React.PureComponent {
             photos={photos && photos.get('data')}
             loading={photos && photos.get('loading')}
             page={this.state.page}
+            handleInfiniteOnLoad={this.handleInfiniteOnLoad}
+            hasMore={
+              photos &&
+              photos.get('data') &&
+              photos.get('data').get('total_pages') &&
+              photos.get('data').get('total_pages') !== this.state.page
+            }
           />
           <GoogleMap onClick={this.handleOnClick} />
         </Content>
