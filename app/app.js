@@ -35,14 +35,14 @@ import { translationMessages } from './i18n';
 
 const MOUNT_NODE = document.getElementById('app');
 
-const render = messages => {
+const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <App />
       </ConnectedRouter>
     </Provider>,
-    MOUNT_NODE,
+    MOUNT_NODE
   );
 };
 

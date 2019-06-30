@@ -22,7 +22,7 @@ export function* loadPhotosSaga(action) {
     const response = yield call(request, url);
 
     const successResult = yield put(
-      loadPhotosSuccess(fromJS(response && response.data)),
+      loadPhotosSuccess(fromJS(response && response.data))
     );
 
     return successResult;

@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import { FormattedMessage, defineMessages } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
 
 import ConnectedLanguageProvider, { LanguageProvider } from '../index';
 import store from '../../../store';
@@ -23,21 +22,20 @@ describe('<LanguageProvider />', () => {
     const { container } = render(
       <LanguageProvider messages={messages} locale="en">
         {children}
-      </LanguageProvider>,
+      </LanguageProvider>
     );
     expect(container.firstChild).not.toBeNull();
   });
 });
 
 describe('<ConnectedLanguageProvider />', () => {
-
   it('should render the default language messages', () => {
     const { queryByText } = render(
       <Provider store={store}>
         <ConnectedLanguageProvider messages={translationMessages}>
           <FormattedMessage {...messages.someMessage} />
         </ConnectedLanguageProvider>
-      </Provider>,
+      </Provider>
     );
     expect(queryByText(messages.someMessage.defaultMessage)).not.toBeNull();
   });

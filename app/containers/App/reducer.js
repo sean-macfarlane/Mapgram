@@ -1,4 +1,4 @@
-import { fromJS, List, Map } from 'immutable';
+import { fromJS } from 'immutable';
 
 import {
   LOAD_PHOTOS_REQUEST,
@@ -28,7 +28,7 @@ function appReducer(currentState = initialState, action) {
         .setIn(['photos', 'loading'], false)
         .updateIn(
           ['photos', 'data'],
-          currentValue => action.result || currentValue,
+          currentValue => action.result || currentValue
         );
 
     case LOAD_PHOTOS_FAILURE:

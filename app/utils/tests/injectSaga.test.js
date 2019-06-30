@@ -2,7 +2,6 @@
  * Test injectors
  */
 
-import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
 import renderer from 'react-test-renderer';
 import { render } from 'react-testing-library';
@@ -46,14 +45,14 @@ describe('injectSaga decorator', () => {
     renderer.create(
       <Provider store={store}>
         <ComponentWithSaga {...props} />
-      </Provider>,
+      </Provider>
     );
 
     expect(injectors.injectSaga).toHaveBeenCalledTimes(1);
     expect(injectors.injectSaga).toHaveBeenCalledWith(
       'test',
       { saga: testSaga, mode: 'testMode' },
-      props,
+      props
     );
   });
 
@@ -62,7 +61,7 @@ describe('injectSaga decorator', () => {
     const renderedComponent = renderer.create(
       <Provider store={store}>
         <ComponentWithSaga {...props} />
-      </Provider>,
+      </Provider>
     );
     renderedComponent.unmount();
 
@@ -73,7 +72,7 @@ describe('injectSaga decorator', () => {
   it('should set a correct display name', () => {
     expect(ComponentWithSaga.displayName).toBe('withSaga(Component)');
     expect(
-      injectSaga({ key: 'test', saga: testSaga })(() => null).displayName,
+      injectSaga({ key: 'test', saga: testSaga })(() => null).displayName
     ).toBe('withSaga(Component)');
   });
 
@@ -82,7 +81,7 @@ describe('injectSaga decorator', () => {
     const renderedComponent = renderer.create(
       <Provider store={store}>
         <ComponentWithSaga {...props} />
-      </Provider>,
+      </Provider>
     );
     const {
       props: { children },
@@ -120,7 +119,7 @@ describe('useInjectSaga hook', () => {
     render(
       <Provider store={store}>
         <ComponentWithSaga {...props} />
-      </Provider>,
+      </Provider>
     );
 
     expect(injectors.injectSaga).toHaveBeenCalledTimes(1);
@@ -135,7 +134,7 @@ describe('useInjectSaga hook', () => {
     const { unmount } = render(
       <Provider store={store}>
         <ComponentWithSaga {...props} />
-      </Provider>,
+      </Provider>
     );
     unmount();
 

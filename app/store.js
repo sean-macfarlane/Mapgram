@@ -43,7 +43,7 @@ const enhancers = [applyMiddleware(...middlewares)];
 const store = createStore(
   createReducer(),
   fromJS(initialState),
-  composeEnhancers(...enhancers),
+  composeEnhancers(...enhancers)
 );
 
 // Extensions

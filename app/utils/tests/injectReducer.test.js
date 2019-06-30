@@ -2,7 +2,6 @@
  * Test injectors
  */
 
-import { memoryHistory } from 'react-router-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
@@ -37,7 +36,7 @@ describe('injectReducer decorator', () => {
     renderer.create(
       <Provider store={store}>
         <ComponentWithReducer />
-      </Provider>,
+      </Provider>
     );
 
     expect(injectors.injectReducer).toHaveBeenCalledTimes(1);
@@ -47,7 +46,7 @@ describe('injectReducer decorator', () => {
   it('should set a correct display name', () => {
     expect(ComponentWithReducer.displayName).toBe('withReducer(Component)');
     expect(
-      injectReducer({ key: 'test', reducer })(() => null).displayName,
+      injectReducer({ key: 'test', reducer })(() => null).displayName
     ).toBe('withReducer(Component)');
   });
 
@@ -56,7 +55,7 @@ describe('injectReducer decorator', () => {
     const renderedComponent = renderer.create(
       <Provider store={store}>
         <ComponentWithReducer {...props} />
-      </Provider>,
+      </Provider>
     );
     const {
       props: { children },
@@ -85,7 +84,7 @@ describe('useInjectReducer hook', () => {
     render(
       <Provider store={store}>
         <ComponentWithReducer />
-      </Provider>,
+      </Provider>
     );
 
     expect(injectors.injectReducer).toHaveBeenCalledTimes(1);

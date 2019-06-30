@@ -11,7 +11,7 @@ describe('<HomePage />', () => {
     } = render(
       <IntlProvider locale="en">
         <HomePage />
-      </IntlProvider>,
+      </IntlProvider>
     );
     expect(firstChild).toMatchSnapshot();
   });

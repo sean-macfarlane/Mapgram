@@ -27,7 +27,7 @@ export function request(url, options) {
     'Content-Type': 'application/json',
     ...config.headers,
   };
-/*
+  /*
   return fetch(url, params).then(async response => {
     const contentType = response.headers.get('content-type');
 

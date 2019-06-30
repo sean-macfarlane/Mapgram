@@ -2,11 +2,9 @@
  * Test store addons
  */
 
-import { browserHistory } from 'react-router-dom';
 import store from '../store';
 
 describe('configureStore', () => {
-
   describe('injectedReducers', () => {
     it('should contain an object for reducers', () => {
       expect(typeof store.injectedReducers).toBe('object');

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Layout, Icon, Spin as AntdSpin } from 'antd';
+import { Layout, Spin as AntdSpin } from 'antd';
 import T from 'prop-types';
 import IT from 'react-immutable-proptypes';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -22,7 +22,6 @@ const Sider = styled(AntdSider)`
   &&& {
     background: ${theme.Sidebar.background};
     border-right: ${theme.Sidebar.borderRight};
-    height: ${theme.Sidebar.height};
     left: 0;
     overflow: hidden;
     position: fixed;
@@ -39,9 +38,17 @@ const ListContainer = styled.div`
 
 export class Sidebar extends React.PureComponent {
   render() {
+    const {
+      collapsed,
+      handleInfiniteOnLoad,
+      loading,
+      hasMore,
+      page,
+      photos,
+    } = this.props;
     return (
       <Sider
-        collapsed={this.props.collapsed}
+        collapsed={collapsed}
         width={parseInt(theme.Sidebar.width, 10)}
         collapsedWidth={0}
       >
@@ -49,17 +56,14 @@ export class Sidebar extends React.PureComponent {
           <InfiniteScroll
             initialLoad={false}
             pageStart={0}
-            loadMore={this.props.handleInfiniteOnLoad}
-            hasMore={!this.props.loading && this.props.hasMore}
+            loadMore={handleInfiniteOnLoad}
+            hasMore={!loading && hasMore}
             useWindow={false}
           >
-            {this.props.loading && this.props.page === 1 ? (
+            {loading && page === 1 ? (
               <Spin />
             ) : (
-              <PhotoList
-                photos={this.props.photos && this.props.photos.get('results')}
-                page={this.props.page}
-              />
+              <PhotoList photos={photos && photos.get('results')} page={page} />
             )}
           </InfiniteScroll>
         </ListContainer>

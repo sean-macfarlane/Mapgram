@@ -3,7 +3,6 @@
  */
 
 import produce from 'immer';
-import { memoryHistory } from 'react-router-dom';
 import identity from 'lodash/identity';
 
 import store from '../../store';
@@ -28,12 +27,11 @@ describe('reducer injectors', () => {
   let injectReducer;
 
   describe('getInjectors', () => {
-
     it('should return injectors', () => {
       expect(getInjectors(store)).toEqual(
         expect.objectContaining({
           injectReducer: expect.any(Function),
-        }),
+        })
       );
     });
 
