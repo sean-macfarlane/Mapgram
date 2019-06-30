@@ -27,7 +27,7 @@ const Sider = styled(AntdSider)`
     overflow: hidden;
     position: fixed;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 1;
     height: calc(100% - 64px);
   }
 `;

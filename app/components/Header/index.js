@@ -21,7 +21,7 @@ const FixedHeader = styled(({ collapsed, isMobile, ...rest }) => (
     height: ${theme.GlobalHeader.height};
     padding: 0;
     position: fixed;
-    z-index: 999;
+    z-index: 1;
     width: 100%;
   }
 `;
