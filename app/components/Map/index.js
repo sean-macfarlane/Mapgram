@@ -14,7 +14,7 @@ const Map = compose(
     googleMapURL: GOOGLE_MAPS_URL,
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: (
-      <div style={{ height: `100%`, width: '100%', position: 'fixed' }} />
+      <div style={{ height: `calc(100% - 64px)`, width: '100%', position: 'fixed' }} />
     ),
     mapElement: <div style={{ height: `100%` }} />,
   }),

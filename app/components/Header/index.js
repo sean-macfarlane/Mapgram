@@ -7,6 +7,8 @@ import theme from 'styles';
 import Search from 'components/Search';
 import Link from 'components/Link';
 
+import logoImage from 'images/logo.png';
+
 const { Header } = Layout;
 
 const FixedHeader = styled(({ collapsed, isMobile, ...rest }) => (
@@ -29,7 +31,7 @@ const LogoContainer = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 0 0 24px;
+  padding: 0 0 0 40px;
   position: absolute;
   font-size: 18px;
 `;
@@ -41,7 +43,7 @@ const SearchBox = styled.div`
 const GlobalHeader = props => (
   <FixedHeader>
     <LogoContainer to="/">
-      <Icon type="compass" /> Mapgram
+      <img src={logoImage} alt="logo" height="32" />
     </LogoContainer>
     <SearchBox>
       <Search

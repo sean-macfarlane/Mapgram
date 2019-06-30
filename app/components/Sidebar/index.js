@@ -6,6 +6,8 @@ import IT from 'react-immutable-proptypes';
 
 import theme from 'styles';
 
+import PhotoList from 'components/PhotoList';
+
 const { Sider: AntdSider } = Layout;
 
 const Sider = styled(AntdSider)`
@@ -18,6 +20,7 @@ const Sider = styled(AntdSider)`
     position: fixed;
     overflow-y: auto;
     z-index: 1000;
+    height: calc(100% - 64px)
   }
 `;
 
@@ -29,7 +32,7 @@ export class Sidebar extends React.PureComponent {
         width={parseInt(theme.Sidebar.width, 10)}
         collapsedWidth={0}
       >
-        Test
+        <PhotoList photos={this.props.photos && this.props.photos.get('results')} page={this.props.page} />
       </Sider>
     );
   }
@@ -38,6 +41,7 @@ export class Sidebar extends React.PureComponent {
 Sidebar.propTypes = {
   collapsed: T.bool,
   photos: T.oneOfType([IT.map, T.bool]),
+  page: T.any,
 };
 
 export default Sidebar;

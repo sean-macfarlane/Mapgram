@@ -13,7 +13,6 @@ const initialState = fromJS({
   photos: {
     loading: false,
     data: false,
-    page: 1,
   },
 });
 

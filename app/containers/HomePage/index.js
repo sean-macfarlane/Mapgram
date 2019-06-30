@@ -53,6 +53,7 @@ class HomePage extends React.PureComponent {
     this.state = {
       search: '',
       collapsed: true,
+      page: 1,
     };
   }
 
@@ -61,7 +62,7 @@ class HomePage extends React.PureComponent {
   handleOnSearch = value => {
     if (value && value !== '') {
       this.props.loadPhotos(value);
-      this.setState({ search: value, collapsed: false });
+      this.setState({ search: value, collapsed: false, page: 1 });
     }
   };
 
@@ -98,7 +99,12 @@ class HomePage extends React.PureComponent {
           onSearch={this.handleOnSearch}
         />
         <Content>
-          <Sidebar collapsed={this.state.collapsed} photos={photos} />
+          <Sidebar
+            collapsed={this.state.collapsed}
+            photos={photos && photos.get('data')}
+            loading={photos && photos.get('loading')}
+            page={this.state.page}
+          />
           <GoogleMap onClick={this.handleOnClick} />
         </Content>
       </ContainerLayout>
