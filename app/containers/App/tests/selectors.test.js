@@ -1,3 +1,5 @@
+import { fromJS } from 'immutable';
+
 import { makeSelectLocation } from 'containers/App/selectors';
 
 describe('makeSelectLocation', () => {
@@ -5,9 +7,9 @@ describe('makeSelectLocation', () => {
     const router = {
       location: { pathname: '/foo' },
     };
-    const mockedState = {
+    const mockedState = fromJS({
       router,
-    };
+    });
     expect(makeSelectLocation()(mockedState)).toEqual(router.location);
   });
 });

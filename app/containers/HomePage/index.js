@@ -78,10 +78,11 @@ class HomePage extends React.PureComponent {
             search: city,
           });
         } else {
+          // eslint-disable-next-line no-console
           console.log(
             'Geocode was not successful for the following reason:',
             status
-          ); // eslint-disable-line no-console
+          );
         }
       }
     );
