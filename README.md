@@ -7,6 +7,8 @@ Click anywhere on the map or use the Autocomplete to view photos of that city.
 
 Built on React-Boilerplate (https://github.com/react-boilerplate/react-boilerplate)
 
+NOTE: I put the API keys in the repo for testing deployment, I will remove later. Please don't steal.
+
 ## Set up environment:
 		
 	Install Dependencies 
@@ -17,4 +19,7 @@ Built on React-Boilerplate (https://github.com/react-boilerplate/react-boilerpla
      `npm start`
      
   ### Production
-    `npm run start:prod`
+    `npm run start:production`	   
+    - Runs tests (see `npm test`)	
+    - Builds your app (see `npm run build`)	
+    - Starts the production server (see `npm run start:prod`)
