@@ -7,7 +7,7 @@ Click anywhere on the map or use the Autocomplete to view photos of that city.
 
 Built on React-Boilerplate (https://github.com/react-boilerplate/react-boilerplate)
 
-NOTE: I put the API keys in the repo for testing deployment, I will remove later. Please don't steal.
+![image](https://user-images.githubusercontent.com/12651916/154145057-a813fd3f-ca07-48ba-ba30-94a0474e9d6d.png)
 
 ## Set up environment:
 		
